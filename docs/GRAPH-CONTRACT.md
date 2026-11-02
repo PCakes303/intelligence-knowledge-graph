@@ -6,6 +6,6 @@ Every edge MUST reference one or more evidence nodes and include a confidence va
 
 Evidence records describe observations and preserved artifacts. Edges describe interpretations or assertions derived from evidence. Implementations MUST NOT silently convert interpretations into observations or represent an edge as verified truth.
 
-All timestamps MUST be timezone-aware ISO-8601. Node IDs and edge IDs are unique within a graph. Every edge endpoint and evidence reference MUST resolve to a node in the same graph. Queries are read-only and path traversal is bounded by a caller-supplied maximum depth.
+All timestamps MUST be timezone-aware ISO-8601. Node IDs and edge IDs are unique within a graph. Every edge endpoint and evidence reference MUST resolve to a node in the same graph. Queries are read-only and path traversal is bounded by maximum depth, returned paths, expanded nodes, queued candidate paths and scanned edges. The default path-query budgets are 10,000 expansions, 10,000 queued candidates and 100,000 edge scans; callers may lower or raise them only within hard ceilings. Exceeding a work budget raises a clear ValueError rather than silently truncating traversal.
 
 Breaking semantic changes require a major contract version and migration guidance. A schema-valid graph is not necessarily accurate, lawful, authorized, or safe.
