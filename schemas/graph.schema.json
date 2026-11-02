@@ -21,7 +21,8 @@
     },
     "created_at": {
       "type": "string",
-      "format": "date-time"
+      "format": "date-time",
+      "maxLength": 64
     },
     "nodes": {
       "type": "array",
@@ -79,7 +80,9 @@
                 "maxLength": 1024
               },
               {
-                "type": "number"
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
               },
               {
                 "type": "boolean"
@@ -123,7 +126,8 @@
             },
             "recorded_at": {
               "type": "string",
-              "format": "date-time"
+              "format": "date-time",
+              "maxLength": 64
             },
             "metadata": {
               "type": "object",
@@ -139,7 +143,9 @@
                     "maxLength": 1024
                   },
                   {
-                    "type": "number"
+                    "type": "number",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
                   },
                   {
                     "type": "boolean"
@@ -153,7 +159,8 @@
             "source_record_id": {
               "type": "string",
               "minLength": 1,
-              "maxLength": 128
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
             },
             "canonical_url": {
               "type": "string",
@@ -198,7 +205,8 @@
             },
             "recorded_at": {
               "type": "string",
-              "format": "date-time"
+              "format": "date-time",
+              "maxLength": 64
             },
             "metadata": {
               "type": "object",
@@ -214,7 +222,9 @@
                     "maxLength": 1024
                   },
                   {
-                    "type": "number"
+                    "type": "number",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
                   },
                   {
                     "type": "boolean"
@@ -228,7 +238,8 @@
             "evidence_record_id": {
               "type": "string",
               "minLength": 1,
-              "maxLength": 128
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
             },
             "sha256": {
               "type": "string",
@@ -236,12 +247,14 @@
             },
             "observed_at": {
               "type": "string",
-              "format": "date-time"
+              "format": "date-time",
+              "maxLength": 64
             },
             "source_node_id": {
               "type": "string",
               "minLength": 1,
-              "maxLength": 128
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
             }
           }
         }
@@ -279,7 +292,8 @@
             },
             "recorded_at": {
               "type": "string",
-              "format": "date-time"
+              "format": "date-time",
+              "maxLength": 64
             },
             "metadata": {
               "type": "object",
@@ -295,7 +309,9 @@
                     "maxLength": 1024
                   },
                   {
-                    "type": "number"
+                    "type": "number",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
                   },
                   {
                     "type": "boolean"
@@ -309,7 +325,8 @@
             "entity_record_id": {
               "type": "string",
               "minLength": 1,
-              "maxLength": 128
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
             },
             "entity_kind": {
               "type": "string",
@@ -386,11 +403,13 @@
         },
         "observed_at": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "maxLength": 64
         },
         "recorded_at": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "maxLength": 64
         }
       }
     }
