@@ -13,6 +13,6 @@ The initial reference implementation is published in the standalone public repos
 - [x] Initial 29-file publication and file-hash comparison.
 - [x] Dependency-order loading correction committed and mirrored to master staging.
 - [x] CI matrix green on Python 3.10, 3.11, and 3.12 (run recorded separately).
-- [ ] Final portfolio registry/checkpoint reconciliation.
+- [x] Final portfolio registry/checkpoint reconciliation recorded in [the master portfolio audit checkpoint](https://github.com/PCakes303/agent-intelligence-ecosystem/blob/main/checkpoints/2026-11-02-portfolio-integrity-audit.md).
 
 Upstream dependencies: `osint-evidence` and `entity-resolution`. Their contracts must be checked before adding adapters. Current graph edges require evidence references and explicit uncertainty; the prototype does not collect, scrape, resolve identities, infer facts, or verify truth. License selection remains pending portfolio review.
