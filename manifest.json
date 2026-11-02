@@ -3,7 +3,7 @@
   "id": "knowledge-graph",
   "name": "intelligence-knowledge-graph",
   "version": "0.1.0",
-  "status": "staged",
+  "status": "experimental",
   "visibility": "public",
   "layer": "intelligence",
   "description": "Provenance-aware graph connecting source records, preserved evidence, entities, and evidence-backed relationships.",
