@@ -1,7 +1,6 @@
 # Intelligence Knowledge Graph
 
 **Repository:** `PCakes303/intelligence-knowledge-graph`  
-**Portfolio position:** 23 / 29 public repositories  
 **Technical sequence:** Repository 20  
 **Maturity:** reference implementation / experimental  
 **License:** pending portfolio license review
