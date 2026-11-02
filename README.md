@@ -3,7 +3,7 @@
 **Repository:** `PCakes303/intelligence-knowledge-graph`  
 **Technical sequence:** Repository 20  
 **Maturity:** reference implementation / experimental  
-**License:** pending portfolio license review
+**License:** [Scoped mixed-license policy](LICENSE.md).
 
 ## Purpose
 
