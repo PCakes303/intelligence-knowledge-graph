@@ -68,6 +68,10 @@
         "metadata": {
           "type": "object",
           "maxProperties": 50,
+          "propertyNames": {
+            "type": "string",
+            "maxLength": 128
+          },
           "additionalProperties": {
             "oneOf": [
               {
@@ -124,6 +128,10 @@
             "metadata": {
               "type": "object",
               "maxProperties": 50,
+              "propertyNames": {
+                "type": "string",
+                "maxLength": 128
+              },
               "additionalProperties": {
                 "oneOf": [
                   {
@@ -195,6 +203,10 @@
             "metadata": {
               "type": "object",
               "maxProperties": 50,
+              "propertyNames": {
+                "type": "string",
+                "maxLength": 128
+              },
               "additionalProperties": {
                 "oneOf": [
                   {
@@ -272,6 +284,10 @@
             "metadata": {
               "type": "object",
               "maxProperties": 50,
+              "propertyNames": {
+                "type": "string",
+                "maxLength": 128
+              },
               "additionalProperties": {
                 "oneOf": [
                   {
