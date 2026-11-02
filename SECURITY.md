@@ -2,6 +2,10 @@
 
 This project is experimental. Do not place credentials, private datasets, sensitive personal data, or operational secrets in graph documents or issues.
 
-Report suspected vulnerabilities privately to the repository maintainers using GitHub's private vulnerability reporting where enabled. Do not publish exploit details before remediation coordination.
+## Reporting
 
-The library validates structure and referential integrity; it does not provide access control, encryption, authorization, tamper-proof storage, or truth verification. Deployers must enforce those controls outside this library.
+Do not publish exploitable vulnerability details in public issues. Use GitHub private vulnerability reporting or a private security advisory only if enabled for this repository. No dedicated private reporting address is published here; if GitHub private reporting is unavailable, the owner must configure an approved private reporting channel before production use. Do not include secrets or sensitive personal data in public channels.
+
+## Security boundary
+
+The library validates graph structure, bounded fields and referential integrity. It does not provide access control, encryption, authorization, tamper-proof storage, source authenticity, or truth verification. Deployers must enforce those controls outside this library.
