@@ -3,6 +3,16 @@ from test_graph import graph_fixture
 from intelligence_knowledge_graph.query import neighbors, find_paths
 
 class QueryTests(unittest.TestCase):
+
+    def test_malformed_direction_and_node_id_fail_cleanly(self):
+        graph = graph_fixture()
+        with self.assertRaises(ValueError):
+            neighbors(graph, "ev", direction=[])
+        with self.assertRaises(KeyError):
+            neighbors(graph, ["ev"])
+        with self.assertRaises(KeyError):
+            find_paths(graph, ["ev"], "e")
+
     def test_neighbors(self):
         graph = graph_fixture()
         self.assertEqual(len(neighbors(graph, "ev", direction="out")), 1)
