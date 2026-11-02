@@ -23,3 +23,8 @@ Provenance-aware in-memory graph model for source, evidence, entity and evidence
 - Apply and verify GitHub About metadata and repository administration/security settings.
 - Keep licensing pending until an explicit repository/artifact decision is approved.
 - Preserve synthetic examples and avoid real personal data.
+
+
+## Adversarial query hardening — 2026-11-02
+
+Path queries now build one deterministic adjacency index per query and enforce explicit maximum expansion, queue and edge-scan budgets in addition to depth and result limits. Budget exhaustion raises a clear error. See commits `b96da59ffcc36ba05587519b928435ec38276f3e` and `67678de1716e2a414a87696194718f319abf605c`; verify the resulting CI and refresh staging-to-remote blob parity before portfolio sign-off.
