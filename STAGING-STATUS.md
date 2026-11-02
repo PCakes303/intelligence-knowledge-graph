@@ -1,18 +1,25 @@
-# Publication and Verification Status
+# Intelligence Knowledge Graph — staging and deployment status
 
-The initial reference implementation is published in the standalone public repository. The remote tree was checked against the master staging packet: all 29 expected files were present and their Git blob hashes matched before the dependency-order fix. The fix is mirrored in the master staging copy.
+**Repository:** [PCakes303/intelligence-knowledge-graph](https://github.com/PCakes303/intelligence-knowledge-graph)  
+**Maturity:** Experimental reference implementation  
+**License:** Pending portfolio review; no license is asserted.
 
-- [x] Provenance-aware graph contract and threat model.
-- [x] Standard-library node, edge, graph, and bounded query implementation.
-- [x] Deterministic graph serialization and referential-integrity checks.
-- [x] Synthetic fixture and unit tests for models, graph integrity, provenance, and queries.
-- [x] Strict versioned JSON graph schema, validation CLI, and Python 3.10–3.12 CI workflow.
-- [x] Metadata and AI discovery entrypoints.
-- [x] Capability and compatibility metadata normalized to contract v1.1.0; master starter-build validation passed against the live remote metadata.
-- [x] Public remote created: `PCakes303/intelligence-knowledge-graph`.
-- [x] Initial 29-file publication and file-hash comparison.
-- [x] Dependency-order loading correction committed and mirrored to master staging.
-- [x] CI matrix green on Python 3.10, 3.11, and 3.12 (run recorded separately).
-- [x] Final portfolio registry/checkpoint reconciliation recorded in [the master portfolio audit checkpoint](https://github.com/PCakes303/agent-intelligence-ecosystem/blob/main/checkpoints/2026-11-02-portfolio-integrity-audit.md).
+## Deployment and parity
 
-Upstream dependencies: `osint-evidence` and `entity-resolution`. Their contracts must be checked before adding adapters. Current graph edges require evidence references and explicit uncertainty; the prototype does not collect, scrape, resolve identities, infer facts, or verify truth. License selection remains pending portfolio review.
+- The public repository contains 29 product files; this deployment-status file is administrative evidence and is excluded from the product-file parity count.
+- The retained master staging packet was refreshed from the live remote after the audit found drift in the CI workflow, security policy, graph implementation, query implementation, requirements, schema, validator and tests.
+- Current parity verification: **29 staged product files vs 29 remote product files; zero missing, extra or differing Git blob hashes.**
+- The parity comparison was performed against the live `main` trees after synchronization on 2026-11-02.
+- CI: [Run 41497020106](https://github.com/PCakes303/intelligence-knowledge-graph/actions/runs/41497020106) passed on Python 3.10, 3.11 and 3.12 after input/model hardening. README/security documentation changes are undergoing their own CI runs.
+
+## Scope
+
+Provenance-aware in-memory graph model for source, evidence, entity and evidence-backed relationship records. It preserves observation/interpretation separation and explicit uncertainty. It does not collect sources, preserve evidence bytes, resolve identities, infer facts, establish truth, or make decisions.
+
+## Remaining gates
+
+- Bound path-query work/queue expansion in addition to depth and result count.
+- Expand schema/model parity tests, especially direct library API validation versus CLI schema validation.
+- Apply and verify GitHub About metadata and repository administration/security settings.
+- Keep licensing pending until an explicit repository/artifact decision is approved.
+- Preserve synthetic examples and avoid real personal data.
