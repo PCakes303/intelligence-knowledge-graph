@@ -96,6 +96,17 @@ class ModelTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             KnowledgeGraph.from_dict(raw)
 
+    def test_schema_and_model_both_reject_invalid_source_port(self):
+        root = Path(__file__).resolve().parents[1]
+        schema = json.loads((root / "schemas" / "graph.schema.json").read_text(encoding="utf-8"))
+        validator = Draft202012Validator(schema, format_checker=FormatChecker())
+        raw = json.loads((root / "examples" / "graph.json").read_text(encoding="utf-8"))
+        source = next(node for node in raw["nodes"] if node["type"] == "source")
+        source["canonical_url"] = "https://example.org:99999/source"
+        self.assertTrue(list(validator.iter_errors(raw)))
+        with self.assertRaises(ValueError):
+            KnowledgeGraph.from_dict(raw)
+
     def test_schema_and_model_both_reject_whitespace_only_label(self):
         root = Path(__file__).resolve().parents[1]
         schema = json.loads((root / "schemas" / "graph.schema.json").read_text(encoding="utf-8"))
