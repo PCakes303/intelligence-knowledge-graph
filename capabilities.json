@@ -1,27 +1,60 @@
 {
-  "schema_version": "1.0.0",
+  "capabilities_version": "1.1.0",
+  "repository": "intelligence-knowledge-graph",
   "repository_id": "knowledge-graph",
+  "maturity": "experimental",
   "capabilities": [
     {
-      "id": "graph-document-validation",
-      "status": "implemented"
+      "id": "graph.document-validation",
+      "name": "Versioned graph document validation",
+      "status": "implemented",
+      "description": "Validates graph documents against the strict versioned graph schema and enforces source, evidence, entity and relationship integrity rules.",
+      "evidence": [
+        "schemas/graph.schema.json",
+        "tools/validate_graph.py",
+        "tests/test_graph.py"
+      ]
     },
     {
-      "id": "deterministic-graph-serialization",
-      "status": "implemented"
+      "id": "graph.provenance-model",
+      "name": "Evidence-backed provenance model",
+      "status": "implemented",
+      "description": "Models source, evidence and entity nodes with evidence-referenced relationships and explicit uncertainty; referential integrity is checked before graph use.",
+      "evidence": [
+        "intelligence_knowledge_graph/models.py",
+        "intelligence_knowledge_graph/graph.py",
+        "tests/test_provenance.py"
+      ]
     },
     {
-      "id": "bounded-graph-query",
-      "status": "implemented"
+      "id": "graph.deterministic-serialization",
+      "name": "Deterministic graph serialization",
+      "status": "implemented",
+      "description": "Serializes graph documents in deterministic identifier order and loads dependent evidence records after their source records.",
+      "evidence": [
+        "intelligence_knowledge_graph/graph.py",
+        "tests/test_graph.py"
+      ]
+    },
+    {
+      "id": "graph.bounded-query",
+      "name": "Bounded graph path queries",
+      "status": "implemented",
+      "description": "Provides adjacency and bounded path queries with explicit maximum depth and result-count limits.",
+      "evidence": [
+        "intelligence_knowledge_graph/query.py",
+        "tests/test_query.py"
+      ]
     }
   ],
-  "non_capabilities": [
-    "collection",
-    "scraping",
-    "entity-resolution",
-    "automated-inference",
-    "truth-verification",
-    "authorization",
-    "persistent-storage"
+  "explicit_non_capabilities": [
+    "source collection, crawling or scraping",
+    "entity resolution or identity matching",
+    "automated inference or truth verification",
+    "person scoring or consequential decision-making",
+    "authentication or authorization",
+    "network ingestion or external API access",
+    "durable or distributed persistence",
+    "production analytics or visualization service"
   ]
 }
