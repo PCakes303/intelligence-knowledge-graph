@@ -1,1 +1,2 @@
-# No third-party runtime or test dependencies; Python standard library only.
+# Development-only schema validation and test dependency; graph library runtime remains standard-library only.
+jsonschema==4.25.1
