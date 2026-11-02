@@ -8,6 +8,7 @@ The initial reference implementation is published in the standalone public repos
 - [x] Synthetic fixture and unit tests for models, graph integrity, provenance, and queries.
 - [x] Strict versioned JSON graph schema, validation CLI, and Python 3.10–3.12 CI workflow.
 - [x] Metadata and AI discovery entrypoints.
+- [x] Capability and compatibility metadata normalized to contract v1.1.0; master starter-build validation passed against the live remote metadata.
 - [x] Public remote created: `PCakes303/intelligence-knowledge-graph`.
 - [x] Initial 29-file publication and file-hash comparison.
 - [x] Dependency-order loading correction committed and mirrored to master staging.
