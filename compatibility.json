@@ -1,19 +1,21 @@
 {
-  "metadata_version": "1.0.0",
-  "repository_id": "knowledge-graph",
-  "contract_version": "0.1.0",
-  "python": {
-    "minimum": "3.10",
-    "tested": [
-      "3.10",
-      "3.11",
-      "3.12"
-    ]
-  },
-  "schema": "schemas/graph.schema.json",
-  "compatibility_policy": "Breaking semantic changes require a major contract version and migration guidance.",
-  "upstream_contracts": [
-    "osint-evidence:evidence-record-and-provenance",
-    "entity-resolution:entity-and-relationship-resolution"
-  ]
+  "compatibility_version": "1.1.0",
+  "repository": "intelligence-knowledge-graph",
+  "policy": "Dependencies describe required upstream data contracts only. They do not establish that the upstream repositories exist, are installed, or interoperate at runtime. Compatibility is tested only when reproducible cross-repository fixtures and evidence are published.",
+  "dependencies": [
+    {
+      "repository_id": "osint-evidence",
+      "version_range": "evidence-record-and-provenance contract not yet pinned",
+      "status": "declared",
+      "evidence": []
+    },
+    {
+      "repository_id": "entity-resolution",
+      "version_range": "entity-and-relationship-resolution contract not yet pinned",
+      "status": "declared",
+      "evidence": []
+    }
+  ],
+  "tested_combinations": [],
+  "breaking_change_policy": "Major versions may remove or change required node, edge, provenance or uncertainty semantics; minor versions add backward-compatible optional fields; patch versions correct editorial or non-semantic defects."
 }
