@@ -117,7 +117,7 @@ class Node:
                     raise ValueError(f"{key} must be a bounded identifier")
         else:
             for key in ("entity_record_id", "entity_kind"):
-                if not isinstance(raw[key], str) or not raw[key] or len(raw[key]) > 128:
+                if not isinstance(raw[key], str) or not raw[key].strip() or len(raw[key]) > 128:
                     raise ValueError(f"{key} must contain 1..128 characters")
             if not isinstance(raw["resolution_status"], str) or raw["resolution_status"] not in {"provisional", "resolved", "disputed", "withdrawn"}:
                 raise ValueError("invalid resolution_status")
