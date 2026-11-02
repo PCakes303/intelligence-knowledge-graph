@@ -1,30 +1,18 @@
-# Intelligence Knowledge Graph — staging and deployment status
+# intelligence-knowledge-graph — deployment and staging checkpoint
 
-**Repository:** [PCakes303/intelligence-knowledge-graph](https://github.com/PCakes303/intelligence-knowledge-graph)  
-**Maturity:** Experimental reference implementation  
-**License:** Pending portfolio review; no license is asserted.
+**Remote:** https://github.com/PCakes303/intelligence-knowledge-graph
+**Audited remote main head:** `07017070241c1e8dace0aa593fcc2db5d627b3b2`
+**Latest verified CI:** [Run 41524040345](https://github.com/PCakes303/intelligence-knowledge-graph/actions/runs/41524040345) — success.
+**Staging source:** `provisioning/staged/intelligence-knowledge-graph/` in `agent-intelligence-ecosystem`.
 
-## Deployment and parity
+## Exact staging parity
 
-- The public repository contains 29 product files; this deployment-status file is administrative evidence and is excluded from the product-file parity count.
-- The retained master staging packet was refreshed from the live remote after the audit found drift in the CI workflow, security policy, graph implementation, query implementation, requirements, schema, validator and tests.
-- Current parity verification: **29 staged product files vs 29 remote product files; zero missing, extra or differing Git blob hashes.**
-- The parity comparison was performed against the live `main` trees after synchronization on 2026-11-02.
-- CI: [Run 41497020106](https://github.com/PCakes303/intelligence-knowledge-graph/actions/runs/41497020106) passed on Python 3.10, 3.11 and 3.12 after input/model hardening. README/security documentation changes are undergoing their own CI runs.
+On 2026-11-02, the retained staging packet was compared with the live remote `main` Git tree after synchronization. **30 staged files match 30 remote files by path and Git blob SHA; zero missing, extra or differing files.** This count includes this status file.
 
-## Scope
+## Scope and maturity
 
-Provenance-aware in-memory graph model for source, evidence, entity and evidence-backed relationship records. It preserves observation/interpretation separation and explicit uncertainty. It does not collect sources, preserve evidence bytes, resolve identities, infer facts, establish truth, or make decisions.
+Experimental in-memory evidence graph with schema/model validation and bounded input records. Query-work budget, authenticated provenance and persistent storage remain separate architecture gates.
 
-## Remaining gates
+## Portfolio governance
 
-- Bound path-query work/queue expansion in addition to depth and result count.
-- Expand schema/model parity tests, especially direct library API validation versus CLI schema validation.
-- Apply and verify GitHub About metadata and repository administration/security settings.
-- Keep licensing pending until an explicit repository/artifact decision is approved.
-- Preserve synthetic examples and avoid real personal data.
-
-
-## Adversarial query hardening — 2026-11-02
-
-Path queries now build one deterministic adjacency index per query and enforce explicit maximum expansion, queue and edge-scan budgets in addition to depth and result limits. Budget exhaustion raises a clear error. See commits `b96da59ffcc36ba05587519b928435ec38276f3e` and `67678de1716e2a414a87696194718f319abf605c`; verify the resulting CI and refresh staging-to-remote blob parity before portfolio sign-off.
+License selection remains pending an explicit repository/artifact decision. GitHub About metadata, private vulnerability reporting, branch rulesets, Actions permissions and security-alert settings require separate live verification; this checkpoint does not claim those controls are enabled.
