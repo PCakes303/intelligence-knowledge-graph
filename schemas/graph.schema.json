@@ -13,7 +13,8 @@
   "properties": {
     "graph_id": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "maxLength": 128
     },
     "contract_version": {
       "const": "0.1.0"
@@ -36,13 +37,15 @@
             "$ref": "#/$defs/entityNode"
           }
         ]
-      }
+      },
+      "maxItems": 10000
     },
     "edges": {
       "type": "array",
       "items": {
         "$ref": "#/$defs/edge"
-      }
+      },
+      "maxItems": 50000
     }
   },
   "$defs": {
@@ -64,7 +67,24 @@
         },
         "metadata": {
           "type": "object",
-          "maxProperties": 50
+          "maxProperties": 50,
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "type": "string",
+                "maxLength": 1024
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
         }
       }
     },
@@ -103,16 +123,35 @@
             },
             "metadata": {
               "type": "object",
-              "maxProperties": 50
+              "maxProperties": 50,
+              "additionalProperties": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 1024
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
             },
             "source_record_id": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "maxLength": 128
             },
             "canonical_url": {
               "type": "string",
               "format": "uri",
-              "pattern": "^https://"
+              "pattern": "^https://",
+              "maxLength": 2048
             }
           }
         }
@@ -155,11 +194,29 @@
             },
             "metadata": {
               "type": "object",
-              "maxProperties": 50
+              "maxProperties": 50,
+              "additionalProperties": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 1024
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
             },
             "evidence_record_id": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "maxLength": 128
             },
             "sha256": {
               "type": "string",
@@ -171,7 +228,8 @@
             },
             "source_node_id": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "maxLength": 128
             }
           }
         }
@@ -213,15 +271,34 @@
             },
             "metadata": {
               "type": "object",
-              "maxProperties": 50
+              "maxProperties": 50,
+              "additionalProperties": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 1024
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
             },
             "entity_record_id": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "maxLength": 128
             },
             "entity_kind": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "maxLength": 128
             },
             "resolution_status": {
               "enum": [
@@ -252,19 +329,23 @@
       "properties": {
         "id": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 128
         },
         "from": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 128
         },
         "to": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 128
         },
         "predicate": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 128
         },
         "evidence_refs": {
           "type": "array",
@@ -272,8 +353,10 @@
           "uniqueItems": true,
           "items": {
             "type": "string",
-            "minLength": 1
-          }
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "maxItems": 100
         },
         "confidence": {
           "type": "number",
@@ -282,7 +365,8 @@
         },
         "uncertainty": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 500
         },
         "observed_at": {
           "type": "string",
