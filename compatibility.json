@@ -1,0 +1,19 @@
+{
+  "metadata_version": "1.0.0",
+  "repository_id": "knowledge-graph",
+  "contract_version": "0.1.0",
+  "python": {
+    "minimum": "3.10",
+    "tested": [
+      "3.10",
+      "3.11",
+      "3.12"
+    ]
+  },
+  "schema": "schemas/graph.schema.json",
+  "compatibility_policy": "Breaking semantic changes require a major contract version and migration guidance.",
+  "upstream_contracts": [
+    "osint-evidence:evidence-record-and-provenance",
+    "entity-resolution:entity-and-relationship-resolution"
+  ]
+}

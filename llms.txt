@@ -1,0 +1,11 @@
+# Intelligence Knowledge Graph
+
+A provenance-aware graph model for source, evidence, entity, and relationship records.
+
+- README.md: scope and quick start.
+- docs/GRAPH-CONTRACT.md: normative semantics.
+- docs/PROVENANCE-AND-UNCERTAINTY.md: provenance requirements.
+- tools/validate_graph.py: document validator.
+- schemas/graph.schema.json: graph document schema.
+
+No collection, identity resolution, inference, or truth verification.

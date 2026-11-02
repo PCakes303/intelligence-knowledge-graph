@@ -1,0 +1,13 @@
+{
+  "graph_id": "synthetic-demo-graph",
+  "contract_version": "0.1.0",
+  "created_at": "2026-01-01T00:00:00Z",
+  "nodes": [
+    {"id":"source-demo","type":"source","label":"Synthetic public source","recorded_at":"2026-01-01T00:00:00Z","source_record_id":"synthetic-source-001","canonical_url":"https://example.org/source","metadata":{"fixture":true}},
+    {"id":"evidence-demo","type":"evidence","label":"Synthetic preserved artifact","recorded_at":"2026-01-01T00:01:00Z","evidence_record_id":"synthetic-evidence-001","sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","observed_at":"2026-01-01T00:00:30Z","source_node_id":"source-demo","metadata":{"fixture":true}},
+    {"id":"entity-demo","type":"entity","label":"Synthetic organization A","recorded_at":"2026-01-01T00:02:00Z","entity_record_id":"synthetic-entity-001","entity_kind":"organization","resolution_status":"provisional","metadata":{"fixture":true}}
+  ],
+  "edges": [
+    {"id":"edge-demo","from":"evidence-demo","to":"entity-demo","predicate":"mentions","evidence_refs":["evidence-demo"],"confidence":0.65,"uncertainty":"Synthetic fixture only; illustrative and not a factual assertion.","observed_at":"2026-01-01T00:00:30Z","recorded_at":"2026-01-01T00:03:00Z"}
+  ]
+}
