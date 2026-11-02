@@ -40,10 +40,13 @@
       "id": "graph.bounded-query",
       "name": "Bounded graph path queries",
       "status": "implemented",
-      "description": "Provides adjacency and bounded path queries with explicit maximum depth and result-count limits.",
+      "description": "Provides adjacency and bounded path queries with explicit maximum depth, result-count, expansion, queue and edge-scan work budgets.",
       "evidence": [
         "intelligence_knowledge_graph/query.py",
         "tests/test_query.py"
+      ],
+      "limitations": [
+        "Path queries raise a ValueError when any configured work budget is exhausted; they do not silently truncate results."
       ]
     }
   ],
