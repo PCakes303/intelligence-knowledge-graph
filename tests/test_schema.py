@@ -45,7 +45,8 @@ class GraphSchemaTests(unittest.TestCase):
     def test_excessive_evidence_refs_rejected_by_schema_and_model(self):
         edge = graph_fixture().to_dict()["edges"][0]
         edge["evidence_refs"] = [f"ev{i}" for i in range(101)]
-        self.assertTrue(list(self.validator.iter_errors(edge)))
+        edge_validator = Draft202012Validator(self.schema["$defs"]["edge"], format_checker=FormatChecker())
+        self.assertTrue(list(edge_validator.iter_errors(edge)))
         with self.assertRaises(ValueError):
             from intelligence_knowledge_graph import Edge
             Edge.from_dict(edge)
