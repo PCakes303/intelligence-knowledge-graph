@@ -51,10 +51,13 @@ class KnowledgeGraph:
             raise ValueError("unsupported contract version")
         if not isinstance(raw["nodes"], list) or not isinstance(raw["edges"], list):
             raise ValueError("nodes and edges must be arrays")
-        from .models import Node, Edge
         graph = cls(raw["graph_id"], raw["created_at"])
-        for item in raw["nodes"]:
-            graph.add_node(Node.from_dict(item))
+        parsed_nodes = [Node.from_dict(item) for item in raw["nodes"]]
+        # Evidence records depend on their source node. Load by dependency order,
+        # not input order, because deterministic serialization sorts by node ID.
+        priority = {"source": 0, "entity": 1, "evidence": 2}
+        for node in sorted(parsed_nodes, key=lambda item: priority[item.type]):
+            graph.add_node(node)
         for item in raw["edges"]:
             graph.add_edge(Edge.from_dict(item))
         return graph
