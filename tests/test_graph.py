@@ -44,6 +44,29 @@ class GraphTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             KnowledgeGraph("g", T, max_edges=500001)
 
+
+    def test_direct_node_input_is_revalidated_and_snapshotted(self):
+        graph = KnowledgeGraph("g", T)
+        mutable_metadata = {"classification": "public"}
+        raw_node = Node("s", "source", "Source", T, {
+            "source_record_id": "src",
+            "canonical_url": "https://example.org",
+            "metadata": mutable_metadata,
+        })
+        stored = graph.add_node(raw_node)
+        mutable_metadata["classification"] = "changed"
+        self.assertEqual(stored.data["metadata"]["classification"], "public")
+        with self.assertRaises(AttributeError):
+            graph.graph_id = "changed"
+
+    def test_direct_edge_input_is_revalidated_and_snapshotted(self):
+        graph = graph_fixture()
+        raw_edge = Edge("r2", "ev", "e", "supports", ["ev"], 0.5, "synthetic", T, T)
+        stored = graph.add_edge(raw_edge)
+        self.assertEqual(stored.evidence_refs, ("ev",))
+        raw_edge.evidence_refs.append("mutated")
+        self.assertEqual(graph.edges["r2"].evidence_refs, ("ev",))
+
     def test_round_trip(self):
         graph = graph_fixture()
         self.assertEqual(KnowledgeGraph.from_dict(graph.to_dict()).to_dict(), graph.to_dict())
