@@ -14,12 +14,20 @@ class KnowledgeGraph:
             raise ValueError("max_nodes must be an integer in [1, 100000]")
         if isinstance(max_edges, bool) or not isinstance(max_edges, int) or not 1 <= max_edges <= 500_000:
             raise ValueError("max_edges must be an integer in [1, 500000]")
-        self.graph_id = graph_id
-        self.created_at = created_at
+        self._graph_id = graph_id
+        self._created_at = created_at
         self._max_nodes = max_nodes
         self._max_edges = max_edges
         self._nodes = {}
         self._edges = {}
+
+    @property
+    def graph_id(self):
+        return self._graph_id
+
+    @property
+    def created_at(self):
+        return self._created_at
 
     @property
     def max_nodes(self):
@@ -39,7 +47,11 @@ class KnowledgeGraph:
 
     def add_node(self, node):
         if not isinstance(node, Node):
-            raise TypeError("node must be a validated Node")
+            raise TypeError("node must be a Node")
+        try:
+            node = Node.from_dict(node.to_dict())
+        except Exception as exc:
+            raise ValueError("node does not satisfy the validated record contract") from exc
         if node.id in self._nodes:
             raise ValueError("duplicate node id")
         if len(self._nodes) >= self._max_nodes:
@@ -53,7 +65,11 @@ class KnowledgeGraph:
 
     def add_edge(self, edge):
         if not isinstance(edge, Edge):
-            raise TypeError("edge must be a validated Edge")
+            raise TypeError("edge must be an Edge")
+        try:
+            edge = Edge.from_dict(edge.to_dict())
+        except Exception as exc:
+            raise ValueError("edge does not satisfy the validated record contract") from exc
         if edge.id in self._edges:
             raise ValueError("duplicate edge id")
         if len(self._edges) >= self._max_edges:
