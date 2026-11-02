@@ -28,9 +28,13 @@ class GraphTests(unittest.TestCase):
             graph.add_node(entity)
 
     def test_graph_edge_capacity_is_enforced(self):
-        graph = graph_fixture()
-        graph.max_edges = 1
+        graph = KnowledgeGraph("g", T, max_edges=1)
+        graph.add_node(Node.from_dict({"id":"s","type":"source","label":"Source","recorded_at":T,"source_record_id":"src","canonical_url":"https://example.org"}))
+        graph.add_node(Node.from_dict({"id":"ev","type":"evidence","label":"Evidence","recorded_at":T,"evidence_record_id":"evr","sha256":"a"*64,"observed_at":T,"source_node_id":"s"}))
+        graph.add_node(Node.from_dict({"id":"e","type":"entity","label":"Entity","recorded_at":T,"entity_record_id":"ent","entity_kind":"organization","resolution_status":"provisional"}))
+        first = Edge.from_dict({"id":"r1","from":"ev","to":"e","predicate":"mentions","evidence_refs":["ev"],"confidence":0.5,"uncertainty":"synthetic","observed_at":T,"recorded_at":T})
         second = Edge.from_dict({"id":"r2","from":"ev","to":"e","predicate":"supports","evidence_refs":["ev"],"confidence":0.5,"uncertainty":"synthetic","observed_at":T,"recorded_at":T})
+        graph.add_edge(first)
         with self.assertRaises(ValueError):
             graph.add_edge(second)
 
