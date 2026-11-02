@@ -16,10 +16,18 @@ class KnowledgeGraph:
             raise ValueError("max_edges must be an integer in [1, 500000]")
         self.graph_id = graph_id
         self.created_at = created_at
-        self.max_nodes = max_nodes
-        self.max_edges = max_edges
+        self._max_nodes = max_nodes
+        self._max_edges = max_edges
         self._nodes = {}
         self._edges = {}
+
+    @property
+    def max_nodes(self):
+        return self._max_nodes
+
+    @property
+    def max_edges(self):
+        return self._max_edges
 
     @property
     def nodes(self):
@@ -34,7 +42,7 @@ class KnowledgeGraph:
             raise TypeError("node must be a validated Node")
         if node.id in self._nodes:
             raise ValueError("duplicate node id")
-        if len(self._nodes) >= self.max_nodes:
+        if len(self._nodes) >= self._max_nodes:
             raise ValueError("graph node capacity reached")
         if node.type == "evidence":
             source_id = node.data["source_node_id"]
@@ -48,7 +56,7 @@ class KnowledgeGraph:
             raise TypeError("edge must be a validated Edge")
         if edge.id in self._edges:
             raise ValueError("duplicate edge id")
-        if len(self._edges) >= self.max_edges:
+        if len(self._edges) >= self._max_edges:
             raise ValueError("graph edge capacity reached")
         if edge.from_id not in self._nodes or edge.to_id not in self._nodes:
             raise ValueError("edge endpoints must exist")
