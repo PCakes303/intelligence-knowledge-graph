@@ -27,6 +27,12 @@ python -m unittest discover -s tests -v
 python tools/validate_graph.py examples/graph.json
 ```
 
+## Machine-readable metadata
+
+- [Repository manifest](manifest.json) declares identity, maturity, dependencies and runtime constraints.
+- [Capability declarations](capabilities.json) list implemented reference behaviors with evidence paths and explicit non-capabilities.
+- [Compatibility declarations](compatibility.json) record upstream contract dependencies. Both dependencies remain declared only; no cross-repository runtime compatibility is claimed.
+
 ## Contract boundaries
 
 This is a graph data model and reference library, not an intelligence collection or inference system. It does not crawl, scrape, identify real people, resolve identities, assert truth, score people, or make decisions. Entity resolution and evidence acquisition remain upstream responsibilities. A graph edge records a sourced assertion with uncertainty, not ground truth.
