@@ -14,7 +14,7 @@ MAX_EVIDENCE_REFS = 100
 
 
 def valid_time(value):
-    if not isinstance(value, str):
+    if not isinstance(value, str) or len(value) > 64:
         return False
     try:
         parsed = datetime_from_iso(value)
@@ -58,9 +58,10 @@ def _validated_metadata(value):
         elif isinstance(item, bool) or item is None:
             pass
         elif isinstance(item, int):
-            pass
+            if abs(item) > 9_007_199_254_740_991:
+                raise ValueError("metadata integer value exceeds safe range")
         elif isinstance(item, float):
-            if not math.isfinite(item):
+            if not math.isfinite(item) or abs(item) > 9_007_199_254_740_991:
                 raise ValueError("metadata numeric values must be finite")
         else:
             raise ValueError("metadata values must be scalar JSON values")
@@ -162,7 +163,7 @@ class Edge:
         if len(set(refs)) != len(refs):
             raise ValueError("evidence_refs must be unique")
         score = raw["confidence"]
-        if isinstance(score, bool) or not isinstance(score, (int, float)) or not math.isfinite(score) or not 0 <= score <= 1:
+        if isinstance(score, bool) or not isinstance(score, (int, float)) or (isinstance(score, float) and not math.isfinite(score)) or not 0 <= score <= 1:
             raise ValueError("confidence must be finite and in [0,1]")
         if not valid_time(raw["observed_at"]) or not valid_time(raw["recorded_at"]):
             raise ValueError("timestamps must be timezone-aware")
