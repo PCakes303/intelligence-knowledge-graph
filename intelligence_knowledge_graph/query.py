@@ -2,9 +2,9 @@
 from collections import deque
 
 def neighbors(graph, node_id, direction="both", predicate=None):
-    if node_id not in graph.nodes:
+    if not isinstance(node_id, str) or node_id not in graph.nodes:
         raise KeyError(node_id)
-    if direction not in {"both", "in", "out"}:
+    if not isinstance(direction, str) or direction not in {"both", "in", "out"}:
         raise ValueError("direction must be both, in, or out")
     found = []
     for edge in graph.edges.values():
@@ -17,7 +17,7 @@ def neighbors(graph, node_id, direction="both", predicate=None):
     return sorted(found, key=lambda pair: (pair[1].id, pair[0].id))
 
 def find_paths(graph, start_id, target_id, max_depth=4, max_paths=100):
-    if start_id not in graph.nodes or target_id not in graph.nodes:
+    if not isinstance(start_id, str) or not isinstance(target_id, str) or start_id not in graph.nodes or target_id not in graph.nodes:
         raise KeyError("start or target node not found")
     if isinstance(max_depth, bool) or not isinstance(max_depth, int) or not 0 <= max_depth <= 12:
         raise ValueError("max_depth must be an integer from 0 to 12")
