@@ -12,6 +12,34 @@ def graph_fixture():
     return graph
 
 class GraphTests(unittest.TestCase):
+
+    def test_graph_node_and_edge_mappings_are_immutable(self):
+        graph = graph_fixture()
+        with self.assertRaises(TypeError):
+            graph.nodes["other"] = graph.nodes["s"]
+        with self.assertRaises(TypeError):
+            graph.edges["other"] = graph.edges["r"]
+
+    def test_graph_node_capacity_is_enforced(self):
+        graph = KnowledgeGraph("g", T, max_nodes=1)
+        graph.add_node(Node.from_dict({"id":"s","type":"source","label":"Source","recorded_at":T,"source_record_id":"src","canonical_url":"https://example.org"}))
+        entity = Node.from_dict({"id":"e","type":"entity","label":"Entity","recorded_at":T,"entity_record_id":"ent","entity_kind":"organization","resolution_status":"provisional"})
+        with self.assertRaises(ValueError):
+            graph.add_node(entity)
+
+    def test_graph_edge_capacity_is_enforced(self):
+        graph = graph_fixture()
+        graph.max_edges = 1
+        second = Edge.from_dict({"id":"r2","from":"ev","to":"e","predicate":"supports","evidence_refs":["ev"],"confidence":0.5,"uncertainty":"synthetic","observed_at":T,"recorded_at":T})
+        with self.assertRaises(ValueError):
+            graph.add_edge(second)
+
+    def test_graph_configuration_is_bounded(self):
+        with self.assertRaises(ValueError):
+            KnowledgeGraph("g", T, max_nodes=100001)
+        with self.assertRaises(ValueError):
+            KnowledgeGraph("g", T, max_edges=500001)
+
     def test_round_trip(self):
         graph = graph_fixture()
         self.assertEqual(KnowledgeGraph.from_dict(graph.to_dict()).to_dict(), graph.to_dict())
