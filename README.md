@@ -3,7 +3,7 @@
 **Repository:** `PCakes303/intelligence-knowledge-graph`  
 **Technical sequence:** Repository 20  
 **Maturity:** reference implementation / experimental  
-**License:** [Scoped mixed-license policy](LICENSE.md).
+**License status:** `pending-review`. [Scoped mixed-license policy](LICENSE.md) documents the intended artifact-specific approach; contributor authority, file-level provenance and third-party notices must be reviewed before redistribution. No blanket license is asserted for data, evidence, fixtures or third-party material.
 
 ## Purpose
 
