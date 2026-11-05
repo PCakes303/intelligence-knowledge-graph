@@ -1,36 +1,49 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/PCakes303/intelligence-knowledge-graph/blob/main/manifest.json",
   "manifest_version": "1.0.0",
   "id": "knowledge-graph",
   "name": "intelligence-knowledge-graph",
   "version": "0.1.0",
-  "status": "experimental",
   "visibility": "public",
-  "layer": "intelligence",
-  "description": "Provenance-aware graph connecting source records, preserved evidence, entities, and evidence-backed relationships.",
+  "maturity": "experimental",
+  "summary": "Experimental provenance-aware graph reference model linking source records, preserved evidence, public entities and evidence-backed relationships. It does not collect data or make autonomous identity assertions.",
+  "license": {
+    "expression": null,
+    "status": "pending-review",
+    "notes": "Scoped mixed-license strategy; file-level provenance and third-party license review remains open."
+  },
+  "interfaces": [],
   "dependencies": [
     {
       "id": "osint-evidence",
-      "contract": "evidence-record-and-provenance",
-      "required": true
+      "constraint": "*",
+      "kind": "contract"
     },
     {
       "id": "entity-resolution",
-      "contract": "entity-and-relationship-resolution",
-      "required": true
+      "constraint": "*",
+      "kind": "contract"
     }
   ],
-  "runtime": {
-    "language": "python",
-    "minimum_version": "3.10",
-    "third_party_dependencies": []
-  },
-  "license": {
-    "status": "pending_review",
-    "spdx": null
-  },
+  "entrypoints": [
+    "intelligence_knowledge_graph/graph.py",
+    "intelligence_knowledge_graph/query.py"
+  ],
   "security": {
-    "network_access": false,
-    "collection": false,
-    "automated_inference": false
-  }
+    "threat_model": "docs/THREAT-MODEL.md",
+    "secrets_in_repository": false,
+    "data_classification": "public",
+    "security_contact": null
+  },
+  "repository_url": "https://github.com/PCakes303/intelligence-knowledge-graph",
+  "default_branch": "main",
+  "compatibility": [],
+  "evidence": [
+    {
+      "claim": "Local tests exercise graph model, provenance and bounded query behavior; they do not establish production collection, authenticity or trusted custody.",
+      "kind": "test",
+      "location": "tests/test_graph.py"
+    }
+  ]
 }
